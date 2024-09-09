@@ -1,9 +1,12 @@
-#include <stdio.h>
+#include <iostream>
 #include <dirent.h>
+#include <cstring>
+
+using namespace std;
 
 int main(int argc, char *argv[]) {
-    struct dirent *de;  // Pointer for directory entry
     DIR *dr;
+    struct dirent *de;  // Pointer for directory entry
 
     // Open the directory specified by the user, or use the current directory if none provided
     if (argc == 2) {
@@ -12,14 +15,14 @@ int main(int argc, char *argv[]) {
         dr = opendir(".");
     }
 
-    if (dr == NULL) {
+    if (dr == nullptr) {
         perror("Error opening directory");
         return 1;
     }
 
     // Read and print the directory entries
-    while ((de = readdir(dr)) != NULL) {
-        printf("%s\n", de->d_name);
+    while ((de = readdir(dr)) != nullptr) {
+        cout << de->d_name << endl;
     }
 
     closedir(dr);
