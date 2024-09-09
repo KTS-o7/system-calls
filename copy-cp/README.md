@@ -2,16 +2,16 @@
 
 #### Explanation:
 
-- **Open Files**: We use the `open()` system call to open the source file in read-only mode and the destination file in write-only mode, with create and truncate options.
-- **Copy Loop**: The `read()` system call reads the contents of the source file into a buffer, and the `write()` system call writes it to the destination file.
-- **Permissions**: The destination file is created with `0644` permissions, which gives the owner read and write permissions and the group and others read-only access.
-- **Error Handling**: The program checks for any errors during file opening, reading, and writing, printing appropriate error messages.
+- **Open Files**: We use the `ifstream` and `ofstream` classes to handle file operations in C++. The source file is opened in binary mode for reading, and the destination file is opened in binary mode for writing.
+- **Copy Loop**: The `read()` method reads the contents of the source file into a buffer, and the `write()` method writes it to the destination file.
+- **Permissions**: The destination file is created with default permissions set by the operating system.
+- **Error Handling**: The program checks for any errors during file opening, reading, and writing, and prints appropriate error messages.
 
 ---
 
 ## Overview
 
-This folder contains a C program (`cp.c`) that implements a basic version of the Unix/Linux `cp` (copy) command using system calls. The program reads data from a source file and writes it to a destination file using `open()`, `read()`, and `write()` system calls.
+This folder contains a C++ program (`cp.cpp`) that implements a basic version of the Unix/Linux `cp` (copy) command using file streams. The program reads data from a source file and writes it to a destination file using `ifstream` and `ofstream`.
 
 ## How It Works
 
@@ -20,9 +20,9 @@ This folder contains a C program (`cp.c`) that implements a basic version of the
    - Source file path
    - Destination file path
 
-2. It opens the source file in read-only mode using `open()` and creates (or truncates) the destination file in write-only mode with `0644` permissions.
+2. It opens the source file in binary mode using `ifstream` and creates (or truncates) the destination file in binary mode using `ofstream`.
 
-3. It reads the source file in chunks of 1024 bytes using `read()` and writes the same data to the destination file using `write()`.
+3. It reads the source file in chunks of 1024 bytes into a buffer and writes the same data to the destination file.
 
 4. The process continues until the entire file is copied or an error occurs.
 
@@ -31,7 +31,7 @@ This folder contains a C program (`cp.c`) that implements a basic version of the
 To compile the program:
 
 ```bash
-gcc cp.c -o cp
+g++ cp.cpp -o cp
 ```
 
 To run the program:
@@ -46,3 +46,5 @@ Replace `source_file.txt` with the path of the file you want to copy, and `desti
 
 - If the source file does not exist or cannot be opened, the program prints an error and exits.
 - If the destination file cannot be created or written to, the program prints an error and exits.
+
+---
