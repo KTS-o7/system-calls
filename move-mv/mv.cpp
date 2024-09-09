@@ -1,9 +1,11 @@
-#include <stdio.h>
-#include <unistd.h>
+#include <iostream>
+#include <cstdio>
+
+using namespace std;
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <source> <destination>\n", argv[0]);
+        cerr << "Usage: " << argv[0] << " <source> <destination>" << endl;
         return 1;
     }
 
